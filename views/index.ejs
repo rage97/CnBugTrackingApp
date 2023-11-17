@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <title>Project List</title>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mb-4">Project List</h1>
+    <a href="/newProject" class="btn btn-success mb-2">Add New Project</a>
+    <!--Search-->
+     
+  <form action="/search" method="get">
+    <label for="search">Search:</label>
+    <input type="text" id="search" name="search" placeholder="Enter search term">
+
+    <!-- Add a dropdown for search type -->
+    <select name="searchType">
+      <option value="title">Title</option>
+      <option value="author">Author</option>
+    </select>
+
+    <button type="submit">Search</button>
+  </form>
+    <!--Search-->
+    <hr>
+    
+    <% projects.forEach(project => { %>
+      <div class="card mb-2">
+            <h2><strong><a href="/projects/<%= project._id %>" class="text-decoration-none text-dark"><%= project.name %></a> :</strong></h2>
+            Description: <%= project.description %><br>
+            Author: <%= project.author %> <br>
+      </div>
+      <a href="/update/<%= project._id %>" class="btn btn-primary">Update Project</a>
+      <a href="/delete/<%= project._id %>" class="btn btn-danger">Delete Project</a>
+    <% }); %>
+  </div>
+</body>
+</html>
+
